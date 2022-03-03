@@ -4,9 +4,9 @@ import { ReadEncryptService } from "../services/ReadEncryptService";
 
 export class EncryptController {
     async create(request: Request, response: Response) {
-        const { description, originalContent } = request.body;
+        const { userId, description, originalContent } = request.body;
         const service = new CreateEncryptService();
-        const result = await service.execute({ description, originalContent });
+        const result = await service.execute({ userId, description, originalContent });
 
         if (result instanceof Error) {
             return response.status(400).json(result.message);

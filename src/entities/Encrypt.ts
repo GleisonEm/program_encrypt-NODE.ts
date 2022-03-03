@@ -4,9 +4,12 @@ import {
     Entity,
     UpdateDateColumn,
     PrimaryColumn,
-    ObjectIdColumn
+    ObjectIdColumn,
+    ManyToOne,
+    JoinColumn
 } from 'typeorm';
 import { v4 as uuid} from "uuid";
+import { User } from './User';
 
 @Entity('encrypties')
 export class Encrypt {
@@ -21,6 +24,13 @@ export class Encrypt {
 
     @Column()
     originalContent: string;
+
+    @Column()
+    userId: string;
+
+    @ManyToOne(() => User)
+    @JoinColumn({ name: 'userId' })
+    provider: User;
 
     @CreateDateColumn({
         type: 'timestamp',

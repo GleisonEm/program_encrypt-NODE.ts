@@ -3,7 +3,6 @@ import {
     CreateDateColumn,
     Entity,
     UpdateDateColumn,
-    PrimaryColumn,
     ObjectIdColumn
 } from 'typeorm';
 import { v4 as uuid} from "uuid";
@@ -14,13 +13,16 @@ export class User {
     _id: string;
 
     @Column()
-    description: string;
+    email: string;
 
     @Column()
-    encrypted: string;
+    username: string;
 
     @Column()
-    originalContent: string;
+    token: string;
+
+    @Column()
+    password: string;
 
     @CreateDateColumn({
         type: 'timestamp',
